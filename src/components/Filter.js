@@ -9,6 +9,8 @@ export default function Filter({
   fromCountry,
   type,
   tags,
+  handleItemClick,
+  getRandomNumber,
   handleResetFilters,
   handleTypeChange,
   handleFromCountryChange,
@@ -19,7 +21,9 @@ export default function Filter({
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {
-    navigate(`/random-recipe/${id}`);
+    const randomId = getRandomNumber();
+    handleItemClick(randomId)
+    navigate(`/random-recipe/${randomId}`);
   };
 
   return (

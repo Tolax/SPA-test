@@ -3,7 +3,7 @@ import "../App.css";
 import Filter from "./Filter";
 import Recieps from "./Recieps";
 
-function Sap({id,handleItemClick}) {
+function Sap({id,handleItemClick, getRandomNumber}) {
   const [fromCountry, setFromCountry] = useState("");
   const [type, setType] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -49,6 +49,8 @@ function Sap({id,handleItemClick}) {
             fromCountry={fromCountry}
             type={type}
             tags={tags}
+            handleItemClick={handleItemClick}
+            getRandomNumber={getRandomNumber}
             handleResetFilters={handleResetFilters}
             handleTypeChange={handleTypeChange}
             handleFromCountryChange={handleFromCountryChange}
