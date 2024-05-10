@@ -1,0 +1,153 @@
+
+.info{
+    width:  465px;
+    height: 852px;
+    background: #FFFFFF;
+}
+
+.img-block{
+    width: 417px;
+    height: 430px;
+    margin: 24px 24px 0px 24px;
+}
+
+.biba{
+    margin: 0px 24px 24px 24px;
+    margin-top: 24px;
+    width: 369px;
+    height: 198px;
+    font-family: Roboto;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 18px;
+    text-align: left;
+}
+
+.img-setting{
+    margin: 24px 24px 0px 24px;
+    width: 369px;
+    height: 160px;
+}
+
+.filter-area{
+    margin: 0px 24px 0px 24px;
+}
+
+.filter-1{
+    width: 417px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-2{
+    width: 417px;
+    height: 38px;
+    display: flex;
+    margin-top: 17.33px;
+    align-items: center;
+}
+
+.text-filter{
+    width: 120px;
+    height: 24px;
+    text-align: right;
+    margin-right: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.text-filter-3{
+    width: 120px;
+    height: 48px;
+    text-align: right;
+    margin-right: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+}
+
+.select-setting{
+    width: 285px;
+    height: 38px;
+    padding: 8px 16px 8px 16px;
+    gap: 8px;
+    border: 1px solid #D9D9D9;
+    opacity: 0px;
+}
+
+.filter-3{
+    display: flex;
+    align-items: center;
+    width: 417px;
+    height: 48px;
+    box-sizing: border-box;
+    display: flex;
+    margin-top: 17.33px;
+    box-sizing: border-box;
+}
+
+.radio-buttons{
+    width: 285px;
+    height: 40px;
+    box-sizing: border-box;
+    display: flex;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.btn{
+    width: 72px;
+    height: 40px;
+    border: 1px solid #D9D9D9;
+    line-height: 35px;
+}
+
+.btn-reset{
+    margin-top: 17.33px;
+    width: 151px;
+    height: 22px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #1890FF;
+    opacity: 30%;
+}
+
+.random-reciept{
+    margin-top: 48px;
+    margin-left: 24px;
+}
+
+.text-bottom{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #000000;
+    opacity: 90%;
+}
+
+.btn-lucky{
+    margin-top: 24px;
+    width: 120px;
+    height: 32px;
+    padding: 4px 15px 4px 15px;
+    border: 1px solid #D9D9D9;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: center;
+    color: #000000D9;
+}
+
+.active-radio {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.select-setting option {
+    font-size: 16px;
+  }
