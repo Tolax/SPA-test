@@ -3,7 +3,7 @@ import "../App.css";
 import Filter from "./Filter";
 import Recieps from "./Recieps";
 
-function Sap() {
+function Sap({id,handleItemClick}) {
   const [fromCountry, setFromCountry] = useState("");
   const [type, setType] = useState("");
   const [difficulty, setDifficulty] = useState("");
@@ -44,6 +44,7 @@ function Sap() {
         
         <div className="main-info">
           <Filter
+            id={id}
             difficulty={difficulty}
             fromCountry={fromCountry}
             type={type}
@@ -53,7 +54,7 @@ function Sap() {
             handleFromCountryChange={handleFromCountryChange}
             handleDifficultyChange={handleDifficultyChange}
           />
-          <Recieps fromCountry={fromCountry} difficulty={difficulty} type={type} />
+          <Recieps fromCountry={fromCountry} difficulty={difficulty} type={type} handleItemClick={handleItemClick}/>
         </div>
       </div>
   );

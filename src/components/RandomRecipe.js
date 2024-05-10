@@ -3,16 +3,11 @@ import "./randomrecipe.css";
 
 
 
-export default function RandomRecipe() {
+export default function RandomRecipe({id}) {
     const [recipe, setRecipe] = useState({});
-    const [random, setRandom] = useState(getRandomNumber());
-
-    function getRandomNumber() {
-        return Math.floor(Math.random() * 30) + 1;
-      }
     
     useEffect(()=>{
-        fetch(`https://dummyjson.com/recipes/${random}`)
+        fetch(`https://dummyjson.com/recipes/${id}`)
         .then(res => res.json())
         .then(res=>setRecipe(res));
     },[])

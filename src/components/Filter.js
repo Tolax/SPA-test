@@ -4,6 +4,7 @@ import "./filter.css";
 import { useNavigate } from 'react-router-dom';
 
 export default function Filter({
+  id,
   difficulty,
   fromCountry,
   type,
@@ -18,8 +19,7 @@ export default function Filter({
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {
-    // Перенаправление на страницу с рандомным рецептом
-    navigate("/random-recipe");
+    navigate(`/random-recipe/${id}`);
   };
 
   return (

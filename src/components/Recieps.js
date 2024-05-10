@@ -5,8 +5,9 @@ import vector from "../icons/Vector.png";
 import blackstar from "../icons/blackstar.png";
 import emptystar from "../icons/emptystar.png";
 import timer from "../icons/icon.png";
+import { useNavigate } from 'react-router-dom';
 
-export default function Body({ fromCountry, difficulty, type }) {
+export default function Body({ fromCountry, difficulty, type, handleItemClick }) {
   const [total, setTotal] = useState(0);
   const [recieps, setRecieps] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -72,8 +73,21 @@ export default function Body({ fromCountry, difficulty, type }) {
     currentPage * 6
   );
 
+  
+
+  const handleClick = (id) => {
+    console.log(`Нажат рецепт с id: ${id}`);
+    // Здесь вы можете выполнить дополнительные действия с этим id
+  };
+
+  const navigate = useNavigate();
+
+  const handleRandomRecipeClick = (id) => {
+    navigate(`/random-recipe/${id}`);
+  };
+
   const itmRecipes = currentRecipe.map((item) => (
-    <div className="item-reciept" key={item.id}>
+    <div onClick={() => {handleItemClick(item.id); handleRandomRecipeClick(item.id)}} className="item-reciept" key={item.id}>
       <div className="item-block-name">
         <h3>{item.name}</h3>
       </div>
