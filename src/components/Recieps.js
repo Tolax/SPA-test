@@ -5,9 +5,14 @@ import vector from "../icons/Vector.png";
 import blackstar from "../icons/blackstar.png";
 import emptystar from "../icons/emptystar.png";
 import timer from "../icons/icon.png";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-export default function Body({ fromCountry, difficulty, type, handleItemClick }) {
+export default function Body({
+  fromCountry,
+  difficulty,
+  type,
+  handleItemClick,
+}) {
   const [total, setTotal] = useState(0);
   const [recieps, setRecieps] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -34,14 +39,14 @@ export default function Body({ fromCountry, difficulty, type, handleItemClick })
     if (recieps.length === 0) {
       return;
     }
-
+  
     const filtered = recieps.filter((recipe) => {
       const filteredArr =
         recipe.difficulty.includes(difficulty) &&
-        recipe.cuisine.includes(fromCountry);
-        const tags = type !== "" ? recipe.tags.includes(type) : true;
-
-      return filteredArr && tags;
+        recipe.cuisine.includes(fromCountry) &&
+        (type === "" || recipe.mealType.includes(type));
+  
+      return filteredArr;
     });
     setTotal(filtered.length);
     setCurrentPage(1);
@@ -80,7 +85,13 @@ export default function Body({ fromCountry, difficulty, type, handleItemClick })
   };
 
   const itmRecipes = currentRecipe.map((item) => (
-    <div onClick={() => {handleItemClick(item.id); handleRandomRecipeClick(item.id)}} className="item-reciept" key={item.id}>
+    <div
+      onClick={() => {
+        handleItemClick(item.id);
+        handleRandomRecipeClick(item.id);
+      }}
+      className="item-reciept"
+      key={item.id}>
       <div className="item-block-name">
         <h3>{item.name}</h3>
       </div>
@@ -115,7 +126,15 @@ export default function Body({ fromCountry, difficulty, type, handleItemClick })
         )}
       </div>
       <div className="features">Кухня: {item.cuisine}</div>
-      <div className="features">{item.mealType}</div>
+      <div className="features-block">
+        {item.mealType &&
+          item.mealType.map((tag, index) => (
+            <div key={index}>
+              {tag}
+              {index !== item.mealType.length - 1 && ","}
+            </div>
+          ))}
+      </div>
     </div>
   ));
 

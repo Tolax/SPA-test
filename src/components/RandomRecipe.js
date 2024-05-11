@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./randomrecipe.css";
 import { useParams, useNavigate } from "react-router-dom";
 import vector from "../icons/Vector.png";
-import backIcon from '../icons/back.png'
+import backIcon from "../icons/back.png";
 
 export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
   const navigate = useNavigate();
@@ -40,41 +40,63 @@ export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
 
   return (
     <div>
-      <div className="header-single-recipe">
-        <a onClick={() => goHome()}><img src={backIcon}/></a>
-        {recipe.name}
+      <div className="recipe-header">
+        <div className="name-of-recipe">
+          <a className="link-recipe-single" onClick={() => goHome()}>
+            <img src={backIcon} />
+          </a>
+          <div>{recipe.name}</div>
+        </div>
       </div>
       <div className="body-single-recipe">
         <div className="block-1">
           <div className="kitchen">
             <div className="head-of-block">Кухня</div>
-            <div>{recipe.name}</div>
+            <div className="body-of-block-kitchen">{recipe.cuisine}</div>
           </div>
           <div className="tags">
             <div className="head-of-block">Теги</div>
-            <div>{recipe.tags}</div>
+            <div className="tags-body">
+              {recipe.tags &&
+                recipe.tags.map((tag, index) => (
+                  <div className="tag-solo" key={index}>
+                    #{tag}
+                  </div>
+                ))}
+            </div>
           </div>
           <div className="calorie">
             <div className="head-of-block">Калорийность</div>
-            <div>{recipe.caloriesPerServing}</div>
+            <div className="calories">{recipe.caloriesPerServing}</div>
+            <div className="calorie-hundred">100 грамм</div>
           </div>
           <div className="portions">
             <div className="head-of-block">Количество порций</div>
-            <div>{recipe.servings}</div>
+            <div className="servings">{recipe.servings}</div>
           </div>
           <div className="description">
             <div className="head-of-block">Описание</div>
-            <div>{recipe.instructions}</div>
+            <div className="description-instructions">
+              {recipe.instructions}
+            </div>
           </div>
         </div>
 
         <div>
           <div className="time-to-cook">
             <div className="head-of-block">Общее время приготовления</div>
-            <div>{recipe.prepTimeMinutes + recipe.cookTimeMinutes}</div>
+            <div className="timing">
+              {recipe.prepTimeMinutes + recipe.cookTimeMinutes} минут
+            </div>
           </div>
           <div className="cook-instructions">
             <div className="head-of-block">Инструкция приготовления</div>
+            <div className="instruction-steps">
+              {recipe.instructions &&
+                recipe.instructions.map((tag, index) => (
+                  <div key={index}>--{tag}</div>
+                ))}
+            </div>
           </div>
         </div>
 

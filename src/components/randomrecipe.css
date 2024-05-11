@@ -1,9 +1,69 @@
-.header-single-recipe{
+.recipe-header{
     width: 1896px;
     height: 72px;
     margin: 12px 12px 0px 12px;
     background: #FFFFFF;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
 }
+
+.name-of-recipe{
+    box-sizing: border-box;
+    padding: 30px 70px 0px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 384.25px;
+    height: 40px;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    text-align: left;
+
+}
+.link-recipe-single{
+    display: block;
+}
+
+.head-of-block{
+    box-sizing: border-box;
+    padding: 16px 0px 0px 24px;
+    width: 44px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 24px;
+    text-align: left;
+}
+
+.body-of-block-kitchen{
+    box-sizing: border-box;
+    width: 465px;
+    height: 72px;
+    padding: 24px 0px 0px 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+}
+
+.tags-body{
+    display: flex;
+}
+
+.tag-solo{
+    padding-top: 24px;
+    padding-left: 24px;
+    height: 22px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #00000073;
+}
+
 .body-single-recipe{
     display: flex;
     margin: 0px 0px 12px 0px;
@@ -29,6 +89,7 @@
 }
 
 .calorie{
+    box-sizing: border-box;
     background: #FFFFFF;
     width: 465px;
     height: 158px;
@@ -36,6 +97,28 @@
     border-radius: 2px 0px 0px 0px;
     border: 1px 0px 0px 0px;
     margin: 12px 0px 0px 12px;
+}
+
+.calories{
+    width: 67px;
+    height: 24px;
+    padding: 24px 0px 0px 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #000000D9;
+}
+
+.calorie-hundred{
+    padding: 8px 0px 0px 24px;
+    width: 70px;
+    height: 22px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #00000073;
 }
 
 .portions{
@@ -48,12 +131,35 @@
     margin: 12px 0px 0px 12px;
 }
 
+.servings{
+    padding: 24px 0px 0px 24px;
+    width: 12px;
+    height: 24px;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 24px;
+    text-align: left;
+    color: #000000D9;
+}
+
 .description{
     width: 465px;
     height: 264px;
     background: #FFFFFF;
     gap: 0px;
     margin: 12px 0px 0px 12px;
+}
+
+.description-instructions{
+    padding: 24px;
+    width: 417px;
+    height: 80px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 16.41px;
+    text-align: left;
+    color: #00000073;
+
 }
 
 .time-to-cook{
@@ -63,11 +169,29 @@
     margin: 12px 0px 0px 12px;
 }
 
+.timing{
+    padding: 24px 0px 0px 24px;
+    width: 68px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #000000D9;
+}
+
 .cook-instructions{
     width: 465px;
     height: 712px;
     background: #FFFFFF;
     margin: 12px 0px 0px 12px;
+}
+
+.instruction-steps{
+    width: 406px;
+    height: 294px;
+    padding: 24px 29.5px 24px 29.5px;
+
 }
 
 .block-img{
@@ -95,7 +219,6 @@
     align-items: center;
     width: 918px;
     height:56px;
-
 }
 
 .buttons-navigate-recipe{

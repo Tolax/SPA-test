@@ -7,7 +7,8 @@ export default function Filter({
   difficulty,
   fromCountry,
   type,
-  tags,
+  mealTypes,
+  coutriesTags,
   handleItemClick,
   getRandomNumber,
   handleResetFilters,
@@ -15,7 +16,8 @@ export default function Filter({
   handleFromCountryChange,
   handleDifficultyChange,
 }) {
-  const allTags = tags.map((item) => <option value={item}>{item}</option>);
+  const allMealTypes = mealTypes.map((item) => <option value={item}>{item}</option>);
+  const allCountries = coutriesTags.map((item) => <option value={item}>{item}</option>);
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {
@@ -49,8 +51,7 @@ export default function Filter({
             value={fromCountry}
             onChange={handleFromCountryChange}>
             <option value="">Все страны и регионы</option>
-
-            <option value="3">Вариант 3</option>
+            {allCountries}
           </select>
         </div>
         <div className="filter-2">
@@ -60,7 +61,7 @@ export default function Filter({
             value={type}
             onChange={handleTypeChange}>
             <option value="">Все типы</option>
-            {allTags}
+            {allMealTypes}
           </select>
         </div>
         <div className="filter-3">
