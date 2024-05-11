@@ -73,13 +73,6 @@ export default function Body({ fromCountry, difficulty, type, handleItemClick })
     currentPage * 6
   );
 
-  
-
-  const handleClick = (id) => {
-    console.log(`Нажат рецепт с id: ${id}`);
-    // Здесь вы можете выполнить дополнительные действия с этим id
-  };
-
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = (id) => {

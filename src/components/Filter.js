@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import Recieps from "./Recieps";
 import "./filter.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Filter({
-  id,
   difficulty,
   fromCountry,
   type,
@@ -16,20 +15,21 @@ export default function Filter({
   handleFromCountryChange,
   handleDifficultyChange,
 }) {
-  
-  const allTags = tags.map(item=><option value={item}>{item}</option>)
+  const allTags = tags.map((item) => <option value={item}>{item}</option>);
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {
     const randomId = getRandomNumber();
-    handleItemClick(randomId)
+    handleItemClick(randomId);
     navigate(`/random-recipe/${randomId}`);
   };
 
   return (
     <div className="info">
       <div className="img-block">
-        <img className="img-setting" src="https://www.kirov.kp.ru/share/i/12/10603861/"></img>
+        <img
+          className="img-setting"
+          src="https://www.kirov.kp.ru/share/i/12/10603861/"></img>
         <p className="biba">
           В нашей жизни, когда время становится все более ценным ресурсом,
           задача планирования приема пищи становится все более сложной.
@@ -49,7 +49,7 @@ export default function Filter({
             value={fromCountry}
             onChange={handleFromCountryChange}>
             <option value="">Все страны и регионы</option>
-            
+
             <option value="3">Вариант 3</option>
           </select>
         </div>
@@ -74,12 +74,12 @@ export default function Filter({
               name="difficulty"
               id="any"
               value=""
-              checked={difficulty === "any"}
+              checked={difficulty === ""}
               onChange={handleDifficultyChange}
             />
             <label
               className={`btn radio-button-custom ${
-                difficulty === "any" ? "active-radio" : ""
+                difficulty === "" ? "active-radio" : ""
               }`}
               htmlFor="any">
               Любая
@@ -146,7 +146,9 @@ export default function Filter({
       </div>
       <div className="random-reciept">
         <div className="text-bottom">А еще можно попробовать на вкус удачу</div>
-        <button onClick={handleRandomRecipeClick} className="btn-lucky">Мне повезет!</button>
+        <button onClick={handleRandomRecipeClick} className="btn-lucky">
+          Мне повезет!
+        </button>
       </div>
     </div>
   );

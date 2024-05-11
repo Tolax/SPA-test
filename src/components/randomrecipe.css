@@ -81,14 +81,37 @@
     width: 918px;
     height: 760px;
     margin: 12px 12px 0px 12px;
-    border: 1px solid;
 }
 
 .head-of-block{
     width: 465px;
     height: 56px;
-
-
     box-shadow: 0px -1px 0px 0px #F0F0F0 inset;
+}
 
+.navigation-recipe-one{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 918px;
+    height:56px;
+
+}
+
+.buttons-navigate-recipe{
+    display: flex;
+    justify-content: space-between;
+    width: 72px;
+    height: 32px;
+}
+
+.buttons-navigate-recipe-all{
+    width: 32px;
+    height: 32px;
+    border: 1px solid #D9D9D9;
+    border-radius: 2px 0px 0px 0px;
+}
+
+.buttons-navigate-recipe-prev-img{
+    transform: rotate(180deg);
 }
