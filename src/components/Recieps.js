@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import "./recieps.css";
-import Item from "./Item";
 import vector from "../icons/Vector.png";
 import blackstar from "../icons/blackstar.png";
 import emptystar from "../icons/emptystar.png";
 import timer from "../icons/icon.png";
 import { useNavigate } from "react-router-dom";
+import "./recieps.css";
+import './item.css'
 
 export default function Body({
   fromCountry,
@@ -67,6 +67,7 @@ export default function Body({
         setRecieps(result.recipes);
         setFilteredRecipes(result.recipes);
         setTotal(result.total);
+        setLoading(false);
       });
     fetch("https://dummyjson.com/recipes/1")
       .then((res) => res.json())
@@ -161,7 +162,7 @@ export default function Body({
         </div>
       </div>
       <div className="cards">
-        {itmRecipes}
+        {!loading ? itmRecipes : 'идет загрузка'}
         {/* <Item recieps={recieps} /> */}
       </div>
       <div className="pagination">

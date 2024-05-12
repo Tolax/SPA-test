@@ -16,8 +16,8 @@ export default function Filter({
   handleFromCountryChange,
   handleDifficultyChange,
 }) {
-  const allMealTypes = mealTypes.map((item) => <option value={item}>{item}</option>);
-  const allCountries = coutriesTags.map((item) => <option value={item}>{item}</option>);
+  const allMealTypes = mealTypes.map((item) => <option className="option" value={item}>{item}</option>);
+  const allCountries = coutriesTags.map((item) => <option className="option" value={item}>{item}</option>);
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {

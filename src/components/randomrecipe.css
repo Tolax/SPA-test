@@ -194,6 +194,16 @@
 
 }
 
+.single-step{
+    display: flex;
+    width: 406px;
+}
+
+.single-step img{
+    width: 22px;
+    height: 42px;
+}
+
 .block-img{
     width: 942px;
     height: 852px;

@@ -3,6 +3,9 @@ import "./randomrecipe.css";
 import { useParams, useNavigate } from "react-router-dom";
 import vector from "../icons/Vector.png";
 import backIcon from "../icons/back.png";
+import circle_start from "../icons/timeline_start.png";
+import circle_full from "../icons/timeline_full.png";
+import circle_end from "../icons/timeline_end.png";
 
 export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
   const navigate = useNavigate();
@@ -94,7 +97,20 @@ export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
             <div className="instruction-steps">
               {recipe.instructions &&
                 recipe.instructions.map((tag, index) => (
-                  <div key={index}>--{tag}</div>
+                  <div className="single-step" key={index}>
+                    <div>
+                      <img
+                        src={
+                          index === 0
+                            ? circle_start
+                            : index === recipe.instructions.length - 1
+                            ? circle_end
+                            : circle_full
+                        }
+                      />
+                    </div>
+                    {tag}
+                  </div>
                 ))}
             </div>
           </div>
