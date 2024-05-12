@@ -1,41 +1,50 @@
-import React, { useState } from "react";
-import Recieps from "./Recieps";
+import React from "react";
 import "./filter.css";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function Filter({
   difficulty,
   fromCountry,
   type,
-  tags,
+  mealTypes,
+  coutriesTags,
+  handleItemClick,
+  getRandomNumber,
   handleResetFilters,
   handleTypeChange,
   handleFromCountryChange,
   handleDifficultyChange,
 }) {
-  
-  const allTags = tags.map(item=><option value={item}>{item}</option>)
+  const allMealTypes = mealTypes.map((item) => <option className="option" value={item}>{item}</option>);
+  const allCountries = coutriesTags.map((item) => <option className="option" value={item}>{item}</option>);
   const navigate = useNavigate();
 
   const handleRandomRecipeClick = () => {
-    // Перенаправление на страницу с рандомным рецептом
-    navigate("/random-recipe");
+    const randomId = getRandomNumber();
+    handleItemClick(randomId);
+    navigate(`/random-recipe/${randomId}`);
   };
 
   return (
     <div className="info">
       <div className="img-block">
-        <img className="img-setting" src="https://www.kirov.kp.ru/share/i/12/10603861/"></img>
-        <p className="biba">
+        <img
+          className="img-setting"
+          src="https://www.kirov.kp.ru/share/i/12/10603861/"></img>
+        <div className="text-information">
+          <div className="text-margin">
           В нашей жизни, когда время становится все более ценным ресурсом,
           задача планирования приема пищи становится все более сложной.
-          <br />
+          </div>
+          <div className="text-margin">
           Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или
           ужин? Каким образом мы можем легко и быстро определиться с выбором
           блюда и не тратить много времени на принятие этого решения?
-          <br />
-          Наш сервис поможет: выбирайте параметры - и вперед!
-        </p>
+          </div>
+         <div>
+         Наш сервис поможет: выбирайте параметры - и вперед!
+         </div>
+        </div>
       </div>
       <div className="filter-area">
         <div className="filter-1">
@@ -45,8 +54,7 @@ export default function Filter({
             value={fromCountry}
             onChange={handleFromCountryChange}>
             <option value="">Все страны и регионы</option>
-            
-            <option value="3">Вариант 3</option>
+            {allCountries}
           </select>
         </div>
         <div className="filter-2">
@@ -56,7 +64,7 @@ export default function Filter({
             value={type}
             onChange={handleTypeChange}>
             <option value="">Все типы</option>
-            {allTags}
+            {allMealTypes}
           </select>
         </div>
         <div className="filter-3">
@@ -70,12 +78,12 @@ export default function Filter({
               name="difficulty"
               id="any"
               value=""
-              checked={difficulty === "any"}
+              checked={difficulty === ""}
               onChange={handleDifficultyChange}
             />
             <label
               className={`btn radio-button-custom ${
-                difficulty === "any" ? "active-radio" : ""
+                difficulty === "" ? "active-radio" : ""
               }`}
               htmlFor="any">
               Любая
@@ -142,7 +150,9 @@ export default function Filter({
       </div>
       <div className="random-reciept">
         <div className="text-bottom">А еще можно попробовать на вкус удачу</div>
-        <button onClick={handleRandomRecipeClick} className="btn-lucky">Мне повезет!</button>
+        <button onClick={handleRandomRecipeClick} className="btn-lucky">
+          Мне повезет!
+        </button>
       </div>
     </div>
   );

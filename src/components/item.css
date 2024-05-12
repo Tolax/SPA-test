@@ -45,6 +45,12 @@
     margin: 8px 24px 0px 24px;
 }
 
+.features-block{
+    display: flex;
+    margin: 8px 24px 0px 24px;
+    width: 178.17px;
+    height: 24px;
+}
 .features{
     display: flex;
     margin: 8px 24px 0px 24px;

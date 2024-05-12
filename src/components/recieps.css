@@ -33,24 +33,29 @@ a {
 .founded{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: 1,405px;
     height: 56px;
-    padding: 16px 24px 16px 24px;
+    /* padding: 16px 24px 16px 24px; */
     padding-left: 24px;
   
 }
 
 .text-founded{
     display: block;
-    font-family: Roboto;
     font-size: 20px;
     font-weight: 500;
-    line-height: 24px;
     text-align: left;
 }
 
 .number-of-recieps{
-    text-align: center;
+    margin-left: 12px;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 22px;
+    text-align: left;
+    color: #00000073;
+
     width: 24px;
     height: 22px;
 }

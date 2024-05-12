@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import "./recieps.css";
-import Item from "./Item";
 import vector from "../icons/Vector.png";
 import blackstar from "../icons/blackstar.png";
 import emptystar from "../icons/emptystar.png";
 import timer from "../icons/icon.png";
+import { useNavigate } from "react-router-dom";
+import "./recieps.css";
+import './item.css'
 
-export default function Body({ fromCountry, difficulty, type }) {
+export default function Body({
+  fromCountry,
+  difficulty,
+  type,
+  handleItemClick,
+}) {
   const [total, setTotal] = useState(0);
   const [recieps, setRecieps] = useState([]);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
@@ -33,14 +39,14 @@ export default function Body({ fromCountry, difficulty, type }) {
     if (recieps.length === 0) {
       return;
     }
-
+  
     const filtered = recieps.filter((recipe) => {
       const filteredArr =
         recipe.difficulty.includes(difficulty) &&
-        recipe.cuisine.includes(fromCountry);
-        const tags = type !== "" ? recipe.tags.includes(type) : true;
-
-      return filteredArr && tags;
+        recipe.cuisine.includes(fromCountry) &&
+        (type === "" || recipe.mealType.includes(type));
+  
+      return filteredArr;
     });
     setTotal(filtered.length);
     setCurrentPage(1);
@@ -61,6 +67,7 @@ export default function Body({ fromCountry, difficulty, type }) {
         setRecieps(result.recipes);
         setFilteredRecipes(result.recipes);
         setTotal(result.total);
+        setLoading(false);
       });
     fetch("https://dummyjson.com/recipes/1")
       .then((res) => res.json())
@@ -72,8 +79,20 @@ export default function Body({ fromCountry, difficulty, type }) {
     currentPage * 6
   );
 
+  const navigate = useNavigate();
+
+  const handleRandomRecipeClick = (id) => {
+    navigate(`/random-recipe/${id}`);
+  };
+
   const itmRecipes = currentRecipe.map((item) => (
-    <div className="item-reciept" key={item.id}>
+    <div
+      onClick={() => {
+        handleItemClick(item.id);
+        handleRandomRecipeClick(item.id);
+      }}
+      className="item-reciept"
+      key={item.id}>
       <div className="item-block-name">
         <h3>{item.name}</h3>
       </div>
@@ -108,7 +127,15 @@ export default function Body({ fromCountry, difficulty, type }) {
         )}
       </div>
       <div className="features">Кухня: {item.cuisine}</div>
-      <div className="features">{item.mealType}</div>
+      <div className="features-block">
+        {item.mealType &&
+          item.mealType.map((tag, index) => (
+            <div key={index}>
+              {tag}
+              {index !== item.mealType.length - 1 && ","}
+            </div>
+          ))}
+      </div>
     </div>
   ));
 
@@ -135,7 +162,7 @@ export default function Body({ fromCountry, difficulty, type }) {
         </div>
       </div>
       <div className="cards">
-        {itmRecipes}
+        {!loading ? itmRecipes : 'идет загрузка'}
         {/* <Item recieps={recieps} /> */}
       </div>
       <div className="pagination">
