@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import Recieps from "./Recieps";
+import React from "react";
 import "./filter.css";
 import { useNavigate } from "react-router-dom";
 
@@ -32,16 +31,20 @@ export default function Filter({
         <img
           className="img-setting"
           src="https://www.kirov.kp.ru/share/i/12/10603861/"></img>
-        <p className="biba">
+        <div className="text-information">
+          <div className="text-margin">
           В нашей жизни, когда время становится все более ценным ресурсом,
           задача планирования приема пищи становится все более сложной.
-          <br />
+          </div>
+          <div className="text-margin">
           Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или
           ужин? Каким образом мы можем легко и быстро определиться с выбором
           блюда и не тратить много времени на принятие этого решения?
-          <br />
-          Наш сервис поможет: выбирайте параметры - и вперед!
-        </p>
+          </div>
+         <div>
+         Наш сервис поможет: выбирайте параметры - и вперед!
+         </div>
+        </div>
       </div>
       <div className="filter-area">
         <div className="filter-1">
