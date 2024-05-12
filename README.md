@@ -3,7 +3,7 @@
 Установка проекта
 1.Склонируйте репозиторий проекта из GitHub:
 
-git clone https://github.com/your-username/your-project.git
+git clone https://github.com/Tolax/SPA-test.git
 
 2.Перейдите в директорию проекта:
 
