@@ -1,25 +1,28 @@
 import React, { useEffect, useState } from "react";
-import vector from "../icons/Vector.png";
-import blackstar from "../icons/blackstar.png";
-import emptystar from "../icons/emptystar.png";
-import timer from "../icons/icon.png";
-import { useNavigate } from "react-router-dom";
+import vector from "../../icons/Vector.png";
 import "./recieps.css";
-import './item.css'
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCuisines, fetchMealTypes, fetchRecipes } from "../../store/itemsSlice"
+import Item from "../Item/Item";
 
-export default function Body({
-  fromCountry,
-  difficulty,
-  type,
-  handleItemClick,
-}) {
-  const [total, setTotal] = useState(0);
-  const [recieps, setRecieps] = useState([]);
+export default function Recipes() {
+  const [total, setTotal] = useState(50);
   const [filteredRecipes, setFilteredRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [reciepsPerPage] = useState(6);
+  const { fromCountry, type, difficulty } = useSelector(state => state.filters);
 
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRecipes());
+    dispatch(fetchMealTypes());
+    dispatch(fetchCuisines());
+  }, []);
+
+  const recipes = useSelector(state => state.recipes.items);
+  
   const nextPage = (e) => {
     e.preventDefault();
     const lastRecipeIndex = currentPage * reciepsPerPage;
@@ -36,11 +39,11 @@ export default function Body({
   };
 
   const filter = async () => {
-    if (recieps.length === 0) {
+    if (recipes.length === 0) {
       return;
     }
   
-    const filtered = recieps.filter((recipe) => {
+    const filtered = recipes.filter((recipe) => {
       const filteredArr =
         recipe.difficulty.includes(difficulty) &&
         recipe.cuisine.includes(fromCountry) &&
@@ -48,6 +51,7 @@ export default function Body({
   
       return filteredArr;
     });
+
     setTotal(filtered.length);
     setCurrentPage(1);
     setFilteredRecipes(filtered);
@@ -59,85 +63,15 @@ export default function Body({
 
   useEffect(() => {
     setLoading(true);
-    fetch(
-      "https://dummyjson.com/recipes?limit=50&skip=0&select=name,image,instructions,difficulty,mealType,cuisine,cookTimeMinutes,prepTimeMinutes,tags"
-    )
-      .then((res) => res.json())
-      .then((result) => {
-        setRecieps(result.recipes);
-        setFilteredRecipes(result.recipes);
-        setTotal(result.total);
-        setLoading(false);
-      });
-    fetch("https://dummyjson.com/recipes/1")
-      .then((res) => res.json())
-      .then((res) => console.log(res.tags));
-  }, []);
+    setFilteredRecipes(recipes);
+    setLoading(false);
+  }, [recipes]);
 
   const currentRecipe = filteredRecipes.slice(
     (currentPage - 1) * 6,
     currentPage * 6
   );
 
-  const navigate = useNavigate();
-
-  const handleRandomRecipeClick = (id) => {
-    navigate(`/random-recipe/${id}`);
-  };
-
-  const itmRecipes = currentRecipe.map((item) => (
-    <div
-      onClick={() => {
-        handleItemClick(item.id);
-        handleRandomRecipeClick(item.id);
-      }}
-      className="item-reciept"
-      key={item.id}>
-      <div className="item-block-name">
-        <h3>{item.name}</h3>
-      </div>
-      <img className="img-reciept" src={item.image} alt={item.name} />
-      <div className="instructions">{item.instructions}</div>
-      <div className="timer">
-        <img src={timer} alt="Timer Icon" />
-        {item.cookTimeMinutes + item.prepTimeMinutes} минут
-      </div>
-      <div className="features">
-        Сложность:{" "}
-        {item.difficulty === "Easy" && (
-          <>
-            <img src={blackstar} alt="Filled Star" />
-            <img src={emptystar} alt="Empty Star" />
-            <img src={emptystar} alt="Empty Star" />
-          </>
-        )}
-        {item.difficulty === "Medium" && (
-          <>
-            <img src={blackstar} alt="Filled Star" />
-            <img src={blackstar} alt="Filled Star" />
-            <img src={emptystar} alt="Empty Star" />
-          </>
-        )}
-        {item.difficulty === "Hard" && (
-          <>
-            <img src={blackstar} alt="Filled Star" />
-            <img src={blackstar} alt="Filled Star" />
-            <img src={blackstar} alt="Filled Star" />
-          </>
-        )}
-      </div>
-      <div className="features">Кухня: {item.cuisine}</div>
-      <div className="features-block">
-        {item.mealType &&
-          item.mealType.map((tag, index) => (
-            <div key={index}>
-              {tag}
-              {index !== item.mealType.length - 1 && ","}
-            </div>
-          ))}
-      </div>
-    </div>
-  ));
 
   const pageNumbers = [];
   for (
@@ -158,12 +92,11 @@ export default function Body({
       <div className="block-2">
         <div className="founded">
           <div className="text-founded">Найденные рецепты</div>
-          <div className="number-of-recieps">{total}</div>
+          <div className="number-of-recieps">{filteredRecipes.length}</div>
         </div>
       </div>
       <div className="cards">
-        {!loading ? itmRecipes : 'идет загрузка'}
-        {/* <Item recieps={recieps} /> */}
+        {!loading ? <Item currentRecipe={currentRecipe} /> : 'loading'}
       </div>
       <div className="pagination">
         <nav>

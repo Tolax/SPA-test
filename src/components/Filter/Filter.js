@@ -1,29 +1,41 @@
 import React from "react";
 import "./filter.css";
 import { useNavigate } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import { setFromCountry, setType, setDifficulty, resetFilters } from '../../store/filterSlice';
+import { getRandomRecipeId } from '../../store/itemsSlice';
 
-export default function Filter({
-  difficulty,
-  fromCountry,
-  type,
-  mealTypes,
-  coutriesTags,
-  handleItemClick,
-  getRandomNumber,
-  handleResetFilters,
-  handleTypeChange,
-  handleFromCountryChange,
-  handleDifficultyChange,
-}) {
-  const allMealTypes = mealTypes.map((item) => <option className="option" value={item}>{item}</option>);
-  const allCountries = coutriesTags.map((item) => <option className="option" value={item}>{item}</option>);
+export default function Filter() {
+  const dispatch = useDispatch();
+  const mealtypes = useSelector(state => state.recipes.mealTypes);
+  const countries = useSelector(state => state.recipes.cuisines);
+  const { fromCountry, type, difficulty } = useSelector(state => state.filters);
+  const allMealTypes = mealtypes.map((item) => <option className="option" value={item}>{item}</option>);
+  const allCountries = countries.map((item) => <option className="option" value={item}>{item}</option>);
   const navigate = useNavigate();
+  const id = useSelector(state => state.recipes.id);
 
-  const handleRandomRecipeClick = () => {
-    const randomId = getRandomNumber();
-    handleItemClick(randomId);
-    navigate(`/random-recipe/${randomId}`);
+  const handleResetFilters = () => {
+    dispatch(resetFilters());
   };
+
+  const handleTypeChange = (event) => {
+    dispatch(setType(event.target.value));
+  };
+
+  const handleFromCountryChange = (event) => {
+    dispatch(setFromCountry(event.target.value));
+  };
+
+  const handleDifficultyChange = (event) => {
+    dispatch(setDifficulty(event.target.value));
+  };
+
+  const handleRandomClick = () => {
+    const id = Math.floor(Math.random() * 50) + 1;
+    navigate(`/recipe/${id}`);
+  };
+
 
   return (
     <div className="info">
@@ -150,7 +162,7 @@ export default function Filter({
       </div>
       <div className="random-reciept">
         <div className="text-bottom">А еще можно попробовать на вкус удачу</div>
-        <button onClick={handleRandomRecipeClick} className="btn-lucky">
+        <button onClick={handleRandomClick} className="btn-lucky">
           Мне повезет!
         </button>
       </div>
