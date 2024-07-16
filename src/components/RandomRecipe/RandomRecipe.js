@@ -27,14 +27,14 @@ export default function RandomRecipe() {
   }, [id]);
 
   const handleNextClick = () => {
-    if(id < 50 && id > 0){
+    if(id < 50){
       const newId = parseInt(id, 10) + 1;
       navigate(`/recipe/${newId}`);
     }
   };
 
   const handlePrevClick = () => {
-    if(id < 50 && id > 1){
+    if(id > 1){
       const newId = parseInt(id, 10) - 1;
       navigate(`/recipe/${newId}`);
     }
