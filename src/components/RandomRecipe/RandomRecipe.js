@@ -1,23 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "./randomrecipe.css";
 import { useParams, useNavigate } from "react-router-dom";
-import vector from "../icons/Vector.png";
-import backIcon from "../icons/back.png";
-import circle_start from "../icons/timeline_start.png";
-import circle_full from "../icons/timeline_full.png";
-import circle_end from "../icons/timeline_end.png";
+import vector from "../../icons/Vector.png";
+import backIcon from "../../icons/back.png";
+import circle_start from "../../icons/timeline_start.png";
+import circle_full from "../../icons/timeline_full.png";
+import circle_end from "../../icons/timeline_end.png";
 
-export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
+export default function RandomRecipe() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [recipe, setRecipe] = useState({});
-
   const goHome = () => {
     navigate(`/`);
   };
 
   useEffect(() => {
-    console.log("Fetching recipe for id:", id);
     fetch(`https://dummyjson.com/recipes/${id}`)
       .then((res) => res.json())
       .then((res) => {
@@ -28,17 +26,17 @@ export default function RandomRecipe({ getNextRecipeId, getPrevRecipeId }) {
   }, [id]);
 
   const handleNextClick = () => {
-    console.log("Next recipe button clicked");
-    getNextRecipeId();
-    const newId = parseInt(id, 10) + 1;
-    navigate(`/random-recipe/${newId}`);
+    if(id < 50){
+      const newId = parseInt(id, 10) + 1;
+      navigate(`/recipe/${newId}`);
+    }
   };
 
   const handlePrevClick = () => {
-    console.log("Previous recipe button clicked");
-    getPrevRecipeId();
-    const newId = parseInt(id, 10) - 1;
-    navigate(`/random-recipe/${newId}`);
+    if(id > 1){
+      const newId = parseInt(id, 10) - 1;
+      navigate(`/recipe/${newId}`);
+    }
   };
 
   return (
