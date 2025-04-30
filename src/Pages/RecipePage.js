@@ -1,9 +1,7 @@
 import RandomRecipe from "../components/RandomRecipe/RandomRecipe";
 
 function RecipePage() {
-  return (
-          <RandomRecipe/>
-  );
+  return <RandomRecipe />;
 }
 
 export default RecipePage;

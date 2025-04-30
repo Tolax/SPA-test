@@ -11,7 +11,6 @@ export default function RandomRecipe() {
   const navigate = useNavigate();
   const { id } = useParams();
   const [recipe, setRecipe] = useState({});
-
   const goHome = () => {
     navigate(`/`);
   };
